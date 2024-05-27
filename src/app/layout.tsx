@@ -1,8 +1,17 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Titillium_Web } from "next/font/google";
 import "./globals.css";
+import Sidebar from "./components/Sidebar";
+import { cn } from "./lib/utils";
+import UpperBar from "./components/UpperBar";
+import Image from "next/image";
+import dictionary from "../../public/icons/book-open.svg";
 
 const inter = Inter({ subsets: ["latin"] });
+const titilliumWeb = Titillium_Web({
+  weight: ["200", "300", "400", "600", "700", "900"],
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,7 +25,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={cn(titilliumWeb.className, "flex slate-900 h-screen")}>
+        {" "}
+        <Sidebar />
+        <div className="flex flex-col w-full">
+          <UpperBar>
+            <Image src={dictionary} alt="logo" height={20} />
+          </UpperBar>
+          {children}
+        </div>
+      </body>
     </html>
   );
 }

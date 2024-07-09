@@ -6,6 +6,7 @@ import { cn } from "./lib/utils";
 import UpperBar from "./components/UpperBar";
 import Image from "next/image";
 import dictionary from "../../public/icons/book-open.svg";
+import { Toaster } from "sonner";
 
 const inter = Inter({ subsets: ["latin"] });
 const titilliumWeb = Titillium_Web({
@@ -25,15 +26,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cn(titilliumWeb.className, "flex slate-900 h-screen")}>
+      <body className={cn(titilliumWeb.className, "flex slate-900 h-full")}>
         {" "}
         <Sidebar />
-        <div className="flex flex-col w-full">
-          <UpperBar>
-            <Image src={dictionary} alt="logo" height={20} />
-          </UpperBar>
-          {children}
-        </div>
+        <div className="flex flex-col w-full">{children}</div>
+        <Toaster richColors />
       </body>
     </html>
   );
